@@ -51,7 +51,8 @@
   "devDependencies": {
     "tailwindcss": "^3.4.1"
   }
-}
-"engines": {
+  "engines": {
   "node": ">=18 <21"
 }
+}
+
