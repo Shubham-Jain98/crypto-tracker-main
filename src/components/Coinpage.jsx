@@ -13,14 +13,13 @@ const Coinpage = () => {
 
   const { currency, symbol } = CryptoState();
 
-  const fetchCoin = async () => {
-    const response = await fetch(SingleCoin(id));
-    const data = await response.json();
-
-    setCoin(data);
-  };
-
   useEffect(() => {
+    const fetchCoin = async () => {
+      const response = await fetch(SingleCoin(id));
+      const data = await response.json();
+      setCoin(data);
+    };
+
     fetchCoin();
   }, [id]);
 
