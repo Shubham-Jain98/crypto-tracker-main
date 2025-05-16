@@ -50,9 +50,8 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.1"
-  }
+  },               <-- **Add this comma here**
   "engines": {
-  "node": ">=18 <21"
+    "node": ">=18 <21"
+  }
 }
-}
-
