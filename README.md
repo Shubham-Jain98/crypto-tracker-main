@@ -2,7 +2,7 @@
 
 A sleek, responsive web application that helps users monitor 100+ cryptocurrencies in real-time — complete with price tracking, search, and interactive charts.
 
-[Live Demo 🔗]([https://coin-tracking-app.netlify.app/]) &nbsp;&nbsp;|&nbsp;&nbsp; Built with ❤️ using React.js, Tailwind CSS, and Chart.js
+[Live Demo 🔗](https://coin-tracking-app.netlify.app/) &nbsp;&nbsp;|&nbsp;&nbsp; Built with ❤️ using React.js, Tailwind CSS, and Chart.js
 
 ---
 
