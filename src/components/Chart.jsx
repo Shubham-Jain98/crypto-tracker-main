@@ -9,8 +9,8 @@ import { GridLoader } from "react-spinners";
 import {
   Chart as ChartJS,
   LineElement,
-  CategoryScale, //x
-  LinearScale, //y
+  CategoryScale, // x
+  LinearScale, // y
   PointElement,
 } from "chart.js";
 
@@ -22,33 +22,33 @@ const Chart = ({ coin }) => {
 
   const { currency } = CryptoState();
 
-  const fetchdata = async () => {
-    try {
-      const response = await fetch(HistoricalChart(coin.id, days, currency));
-      const data = await response.json();
-
-      console.log("data:", data);
-      setHistoricalData(data.prices);
-    } catch (err) {
-      console.log("in catch blk");
-      console.log("error is" + err);
-    }
-  };
-  console.log(historicalData);
   useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const response = await fetch(HistoricalChart(coin.id, days, currency));
+        const data = await response.json();
+
+        console.log("data:", data);
+        setHistoricalData(data.prices);
+      } catch (err) {
+        console.log("in catch blk");
+        console.log("error is" + err);
+      }
+    };
+
     fetchdata();
-  }, [currency, days]);
+  }, [coin.id, currency, days]);
 
   return (
     <div className="flex flex-col gap-3 ">
       <div>
-        {!historicalData ? (
-          <div className="bg-black flex  flex-col gap-4 justify-center items-center">
+        {!historicalData || historicalData.length === 0 ? (
+          <div className="bg-black flex flex-col gap-4 justify-center items-center">
             <GridLoader color="#EEBC1D" />
             <div className="text-white font-bold text-2xl">Loading...</div>
           </div>
         ) : (
-          <div className="">
+          <div>
             <Line
               height={400}
               width={700}
@@ -81,11 +81,8 @@ const Chart = ({ coin }) => {
                   },
                 },
                 scales: {
-                  y: {
-                    // min :
-                  },
+                  y: {},
                 },
-
                 elements: {
                   point: {
                     radius: 1,
@@ -100,9 +97,12 @@ const Chart = ({ coin }) => {
           </div>
         )}
       </div>
-      <div className="text-white flex gap-5 font-bold  justify-evenly ">
+      <div className="text-white flex gap-5 font-bold justify-evenly ">
         {chartDays.map((day) => (
-          <div className=" cursor-pointer border-1 border-yellowc py-2 px-7 rounded-md  hover:bg-yellowc">
+          <div
+            key={day.value}
+            className="cursor-pointer border-1 border-yellowc py-2 px-7 rounded-md hover:bg-yellowc"
+          >
             <Selectbtn day={day} setDays={setDays} />
           </div>
         ))}
