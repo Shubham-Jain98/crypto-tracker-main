@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { CryptoState } from "../pages/CryptoContext";
 import { CoinList } from "../config/api";
 import { BarLoader } from "react-spinners";
@@ -15,21 +14,19 @@ const PaginatedItems = () => {
   const { currency } = CryptoState();
   const itemsPerPage = 10;
 
-  const fetchCoins = async () => {
-    setLoading(true);
-
-    try {
-      const response = await fetch(CoinList(currency));
-      const data = await response.json();
-      setCoins(data);
-    } catch (err) {
-      console.log(err);
-    }
-
-    setLoading(false);
-  };
-
   useEffect(() => {
+    const fetchCoins = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(CoinList(currency));
+        const data = await response.json();
+        setCoins(data);
+      } catch (err) {
+        console.log(err);
+      }
+      setLoading(false);
+    };
+
     fetchCoins();
   }, [currency]);
 
@@ -100,4 +97,5 @@ const PaginatedItems = () => {
     </div>
   );
 };
+
 export default PaginatedItems;
